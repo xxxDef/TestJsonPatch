@@ -1,0 +1,39 @@
+@TestJsonPatch_HostAddress = http://localhost:5243
+
+###
+
+GET {{TestJsonPatch_HostAddress}}/codesets/1
+
+###
+
+POST {{TestJsonPatch_HostAddress}}/codesets/string
+Content-Type: application/json
+
+{
+  "id": "1",
+  "name": "Sample CodeSet",
+  "codes": [
+    {
+      "codeId": 101,
+      "codeName": "Code1"
+    },
+    {
+      "codeId": 102,
+      "codeName": "Code2",
+      "codeDescription": "Description for Code2"
+    }
+  ]
+}
+
+###
+
+PATCH {{TestJsonPatch_HostAddress}}/codesets/1
+Content-Type: application/json-patch+json
+
+[
+  { "op": "replace", "path": "/name", "value": "Updated CodeSet" },
+  { "op": "add", "path": "/codes/0/codeDescription", "value": "Description for Code1" },
+  { "op": "remove", "path": "/codes/1/codeDescription" }
+]
+
+###
