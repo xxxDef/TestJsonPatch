@@ -32,8 +32,32 @@ Content-Type: application/json-patch+json
 
 [
   { "op": "replace", "path": "/name", "value": "Updated CodeSet" },
-  { "op": "add", "path": "/codes/0/codeDescription", "value": "Description for Code1" },
-  { "op": "remove", "path": "/codes/1/codeDescription" }
 ]
 
+###
+
+PATCH {{TestJsonPatch_HostAddress}}/codesets/1
+Content-Type: application/json-patch+json
+
+[
+  { "op": "remove", "path": "/codes/id1"},
+]
+
+###
+
+PATCH {{TestJsonPatch_HostAddress}}/codesets/1
+Content-Type: application/json-patch+json
+
+[
+  { "op": "replace", "path": "/codes/id2/codeType", "value": "type3"},
+]
+
+###
+
+PATCH {{TestJsonPatch_HostAddress}}/codesets/1
+Content-Type: application/json-patch+json
+
+[
+  { "op": "add", "path": "/codes/id5", "value": { "codeName": "Code3", "codeType": "NewType" } }
+]
 ###

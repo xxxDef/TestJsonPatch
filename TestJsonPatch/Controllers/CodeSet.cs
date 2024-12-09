@@ -1,4 +1,6 @@
-﻿namespace TestJsonPatch.Controllers
+﻿using System.Collections.Generic;
+
+namespace TestJsonPatch.Controllers
 {
     public class CodeSet
     {
